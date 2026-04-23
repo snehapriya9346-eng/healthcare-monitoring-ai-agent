@@ -34,3 +34,5 @@ def main():
     st.markdown("---")
     st.caption("Disclaimer: This tool is for educational purposes only and not a substitute for professional medical advice.")
 
+if __name__ == "__main__":
+    main()
