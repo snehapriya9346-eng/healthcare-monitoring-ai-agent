@@ -8,7 +8,7 @@ def main():
 
     name = st.sidebar.text_input("Patient Name")
     age = st.sidebar.number_input("Age", min_value=0, max_value=120, value=25)
-    gender = st.sidebar.selectbox("Gender", ["Male", Female", "Other"])
+    gender = st.sidebar.selectbox("Gender", ["Male", "Female", "Other"])
 
     st.subheader("Clinical Inputs")
     symptoms = st.text_area("Current Symptoms")
