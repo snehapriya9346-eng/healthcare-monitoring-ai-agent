@@ -1,128 +1,45 @@
-# HealthAI: Healthcare Monitoring AI Agent
+# 🏥 HealthAI: Family Healthcare Monitoring Dashboard
 
-A simple web-based healthcare assistant built with Python and Streamlit. The app allows users or caregivers to enter patient details (name, age, gender), symptoms, past medical history, and vital signs, and then generates a **preliminary diagnosis** and **suggested treatment plan** based on rule-based analysis of the symptoms.
-
-> **Disclaimer:** This is an educational project, not medical advice. Always consult a qualified doctor before starting, stopping, or changing any treatment.
+An elegant, secure, and standalone relational healthcare analytics platform built using Python, Streamlit, and SQLite3. This application serves as a dedicated digital assistant to monitor physical vital signs, track chronological wellness metrics, and manage daily prescription logs seamlessly across family user profiles.
 
 ---
 
-## Features
+## 🌟 Core Implementation Features
 
-- **Patient data capture**
-  - Patient name, age, gender
-  - Current symptoms (free text)
-  - Past medical history
-  - Vitals (BP, heart rate, SpO2, etc.)
-
-- **Preliminary diagnosis**
-  - Uses simple rule-based logic on the symptom text.
-  - Handles patterns such as:
-    - Fever + cough → possible upper respiratory infection  
-    - Fever + vomiting → possible gastrointestinal infection  
-    - Chest pain → serious warning and advice for urgent evaluation  
-    - Shortness of breath/breathlessness → urgent evaluation  
-    - Headache with vision issues → possible migraine/neurological issue  
-    - Diabetes / high sugar → diabetes-related advice  
-    - Hypertension / high BP → blood pressure-related advice  
-    - General case → “no specific condition detected” with safe advice
-
-- **Suggested treatment plan**
-  - High-level supportive care suggestions (rest, hydration, monitoring).
-  - Always advises to consult a healthcare professional.
-
-- **Simple, clean UI**
-  - Built with Streamlit.
-  - Runs in a web browser (no complex setup for users).
+- **Multi-Patient User Management Profile**
+  - Features a responsive, stateful application canvas allowing examiners to fluidly jump between loaded family directory profiles (e.g., `sneha`, `sanju`, `Anita`) via sidebar interactive controls.
+- **Robust SQLite3 Relational Architecture**
+  - Built upon a clean relational data mapping layer with rigorous Foreign Key constraints, maintaining perfect data integrity and enabling zero-redundancy indexing.
+- **Vitals Visual Analytics Engine**
+  - Synthesizes and plots historical clinical parameters (including Daily Steps, Burned Calories, and Sleep Hours) on timeline graphs leveraging the `matplotlib` visualization runtime.
+- **Automated Vitals Data Simulator**
+  - Features an embedded health-metrics generator engine capable of populating randomized, standard biometric data for responsive local presentation testing.
+- **Clinical Medication Tracker**
+  - Provides instant structured visibility into prescription inventory logs, displaying active medical names, specialized unit dosages, and daily time schedules.
 
 ---
 
-## Tech Stack
+## 📊 Relational Database Schema Design
 
-- **Frontend**: Streamlit
-- **Backend**: Python
-- **Logic**: Rule-based symptom analysis (keyword matching)
-- **Deployment**: Streamlit Cloud
+The engine orchestrates data across 3 strictly mapped tables managed within a localized instance (`health.db`):
 
----
-
-## How to Run Locally
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/snehapriya9346-eng/healthcare-monitoring-ai-agent.git
-   cd healthcare-monitoring-ai-agent
-   ```
-
-2. **Create and activate a virtual environment (optional but recommended)**
-
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Run the app**
-
-   ```bash
-   streamlit run app.py
-   ```
-
-5. Open the URL shown in the terminal (usually `http://localhost:8501`) in your browser.
+1. `patients`: The parent entity structural lookup table mapping individual client keys (`patient_name`).
+2. `medications`: Anchors custom pharmaceutical configurations directly back to a profile identity using an explicit `FOREIGN KEY (patient_name) REFERENCES patients` configuration with automated cascading deletions.
+3. `health_metrics`: Aggregates temporal health indicators including logging date records, physical activity variables (`steps`, `calories`), sleep lengths, and automated vascular trends (`systolic`, `diastolic`, `heart_rate`).
 
 ---
 
-## Live Demo
+## 🛠️ Complete Project Dependency Stack
 
-The app is deployed on Streamlit Community Cloud:
-
-- **Live app:**  
-  https://healthcare-monitoring-ai-agent-ewfkhlpg4rukk9mlpcthyf.streamlit.app/
-
----
-
-## Architecture Overview
-
-- **Input Layer (UI)**
-  - Built with Streamlit.
-  - Sidebar: patient demographics (name, age, gender).
-  - Main area: clinical inputs (symptoms, history, vitals) and an **Analyze and Recommend** button.
-
-- **Logic Layer**
-  - Symptoms text is converted to lowercase.
-  - A series of `if/elif` rules check for keywords:
-    - `"fever"`, `"cough"`, `"vomiting"`, `"chest pain"`, `"shortness of breath"`, `"breathlessness"`, `"headache"`, `"vision"`, `"diabetes"`, `"sugar"`, `"hypertension"`, `"high bp"`, `"high blood pressure"`.
-  - Based on the matched rule, the app sets:
-    - `diagnosis` (Preliminary Diagnosis)
-    - `treatment` (Suggested Treatment Plan)
-
-- **Output Layer**
-  - Displays:
-    - **Preliminary Diagnosis**
-    - **Suggested Treatment Plan**
-  - Shows a disclaimer at the bottom.
+- **UI Interface Render Engine**: `Streamlit`
+- **Data Engineering Layer**: `Pandas`
+- **Plotting & Analytics Engine**: `Matplotlib`
+- **Relational Backend Environment**: `SQLite3`
 
 ---
 
-## Future Work
+## 🚀 Step-by-Step Environment Setup
 
-- Replace rule-based logic with an AI/LLM model for more flexible and detailed reasoning.
-- Connect to a medical knowledge base or guidelines.
-- Add database support to store patient visit history.
-- Extend to support IoT-based vitals monitoring (e.g., continuous BP/SpO2 from devices).
-
----
-
-## Medical Safety Disclaimer
-
-This project is intended **only for educational and academic purposes**.  
-It is **not** a certified medical device or clinical decision support system.
-
-- It does **not** provide professional medical advice.
-- It should **not** be used to diagnose, treat, cure, or prevent any disease.
-- Always consult a licensed doctor or qualified healthcare provider for real medical decisions.
+1. **Bootstrap Core Matrix**: Execute the environment setup cell to install runtime requirements and dependencies.
+2. **Compile Application Infrastructure**: Run the target schema scripts to write out structural assets, formulate database tables, and insert pre-loaded validation samples.
+3. **Launch Live Deployment Link**: Fire up the local server script using Colab's internal secure proxy method to immediately render the operational web application on your dashboard screen.
